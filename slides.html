@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>Service Mesh</title>
+    <link rel="stylesheet" href="./css/reveal.css" />
+    <link rel="stylesheet" href="_assets/theme/puzzle.css" id="theme" />
+    <link rel="stylesheet" href="./css/highlight/zenburn.css" />
+    <link rel="stylesheet" href="./css/print/paper.css" type="text/css" media="print" />
+
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides"><section  data-markdown><script type="text/template">
+
+<!-- .slide: class="master01" -->
+
+# Service Mesh
+</script></section><section  data-markdown><script type="text/template">
+<!-- .slide: class="text-left" -->
+### Service Mesh Definition
+
+A service mesh is a decentralized application networking infrastructure among your services that provides resiliency, security, observability, and routing control. 
+</script></section><section  data-markdown><script type="text/template">
+<!-- .slide: class="text-left" -->
+### Service Mesh & API Gateway overlap
+
+<div class="container">
+<div class="col">
+
+* Telemetry collection
+* Distributed tracing
+* Service discovery
+* Load balancing
+* TLS term-/origination
+* JWT validation
+
+</div>
+<div class="col">
+
+* Request routing
+* Traffic splitting
+* Canary releasing
+* Traffic shadowing
+* Rate limiting
+
+</div>
+</div>
+</script></section><section  data-markdown><script type="text/template">
+<!-- .slide: class="text-left" -->
+### Service Mesh & API Gateway Differences
+
+ API Gateway:
+  * Is focused on business functionality
+  * Handles external client-to-service communication
+  * Abstracts and decouples service implementations
+</script></section><section  data-markdown><script type="text/template">
+<!-- .slide: class="text-left" -->
+### Service Mesh & API Gateway Differences
+
+Service Mesh:
+  * Is focused on network
+  * Handles internal service-to-service communication
+  * Provides details about service implementations
+</script></section><section  data-markdown><script type="text/template">
+<!-- .slide: class="text-left" -->
+### Unique API Gateway capabilities
+
+* Boundary decoupling
+* Tight control over data are allowed in and out
+* Bridging security trust domains
+</script></section><section  data-markdown><script type="text/template">
+<!-- .slide: class="text-left" -->
+### API Gateway Boundary Decoupling
+
+* Request / response transformation
+* Application protocol transformation like REST/SOAP/XSLT
+* Error / Rate limit custom responses
+* Direct responses, e.g. blocked clients/requests
+* Precise control over api/proxy pipelining
+* API composition/grouping
+</script></section><section  data-markdown><script type="text/template">
+<!-- .slide: class="text-left" -->
+### Do I Need a Service Mesh?
+
+You may need one if:
+* You're using a microservices architecture
+* And you’re deploying to a cloud platform
+* And implement services with different languages/frameworks
+</script></section><section  data-markdown><script type="text/template">
+<!-- .slide: class="text-left" -->
+### Service Mesh Tradeoffs
+
+* Increased resource usage
+* Increased latency
+* Increased operations complexity
+</script></section><section  data-markdown><script type="text/template">
+<!-- .slide: class="text-left" -->
+### Red Hat Service Mesh Components
+
+| Component            | Version |
+| -------------------- | ------- |
+| Istio                | 1.4.8   |
+| Jaeger               | 1.17.3  |
+| Kiali                | 1.12.7  |
+| 3scale Istio Adapter | 1.0.0   |
+
+<small>References: <small>[1]</small></small>
+
+[1]: https://docs.openshift.com/container-platform/4.4/service_mesh/servicemesh-release-notes.html#component-versions-included-in-red-hat-openshift-service-mesh-version-1-1-4
+</script></section><section  data-markdown><script type="text/template">
+<!-- .slide: class="text-left" -->
+### Red Hat Service Mesh OAuth/OIDC
+
+Requires Istio Adapter:
+
+* App Identity and Access Adapter <small>[1] [2]</small>
+* API Gateway and adapter, e.g. 3scale adapter <small>[3]</small>
+
+[1]: https://github.com/ibm-cloud-security/app-identity-and-access-adapter
+[2]: https://istio.io/latest/blog/2019/app-identity-and-access-adapter/
+[3]: https://docs.openshift.com/container-platform/4.4/service_mesh/threescale_adapter/threescale-adapter.html
+</script></section><section  data-markdown><script type="text/template">
+<!-- .slide: class="text-left" -->
+### What's Next
+
+* https://blog.christianposta.com/microservices/do-i-need-an-api-gateway-if-i-have-a-service-mesh/
+* https://medium.com/microservices-in-practice/service-mesh-vs-api-gateway-a6d814b9bf56
+* https://medium.com/microservices-in-practice/service-mesh-for-microservices-2953109a3c9a
+* https://leanpub.com/service-mesh-primer
+</script></section><section  data-markdown><script type="text/template">
+</script></section></div>
+    </div>
+
+    <script src="./js/reveal.js"></script>
+
+    <script>
+      function extend() {
+        var target = {};
+        for (var i = 0; i < arguments.length; i++) {
+          var source = arguments[i];
+          for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+              target[key] = source[key];
+            }
+          }
+        }
+        return target;
+      }
+
+      // Optional libraries used to extend on reveal.js
+      var deps = [
+        { src: './plugin/markdown/marked.js', condition: function() { return !!document.querySelector('[data-markdown]'); } },
+        { src: './plugin/markdown/markdown.js', condition: function() { return !!document.querySelector('[data-markdown]'); } },
+        { src: './plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+        { src: './plugin/zoom-js/zoom.js', async: true },
+        { src: './plugin/notes/notes.js', async: true },
+        { src: './plugin/math/math.js', async: true }
+      ];
+
+      // default options to init reveal.js
+      var defaultOptions = {
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        dependencies: deps
+      };
+
+      // options from URL query string
+      var queryOptions = Reveal.getQueryHash() || {};
+
+      var options = extend(defaultOptions, {"controlsTutorial":false}, queryOptions);
+    </script>
+
+
+    <script>
+      Reveal.initialize(options);
+    </script>
+  </body>
+</html>
